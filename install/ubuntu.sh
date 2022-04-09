@@ -1,4 +1,4 @@
-set -x
+set -x -o
 
 # Install dev dependencies
 sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
@@ -21,6 +21,7 @@ git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt -
 
 # Now append the bashrc
 cat >> ~/.bashrc << 'EOL'
+
 # pyenv install path
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
@@ -55,6 +56,7 @@ override_git_prompt_colors() {
 	GIT_PROMPT_END_ROOT="${White}${ResetColor} # "
 }
 reload_git_prompt_colors "Custom"
+
 EOL
 
 echo -e "Done.\nRestart your shell"
