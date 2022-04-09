@@ -20,7 +20,7 @@ git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt -
 
 
 # Now append the bashrc
-cat >> testrc << 'EOL'
+cat >> ~/.bashrc << 'EOL'
 # pyenv install path
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
