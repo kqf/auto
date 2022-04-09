@@ -1,4 +1,4 @@
-set -x -o
+set -x
 
 # Install dev dependencies
 sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
