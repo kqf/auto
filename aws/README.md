@@ -22,3 +22,7 @@ Check state
 ```
 aws-instance-id NAME | xargs aws ec2 describe-instance-status --instance-ids
 ```
+Where `NAME` refers to the instance name or label.
+
+## PS
+While solving the main issue this still looks ugly
