@@ -13,3 +13,4 @@ then run the script
 
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh
+```
