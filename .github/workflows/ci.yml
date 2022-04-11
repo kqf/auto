@@ -1,6 +1,5 @@
 
 name: tests
-
 on:
   push:
     branches: [ "**" ]
@@ -17,5 +16,6 @@ jobs:
           - ubuntu-18.04
     runs-on: ${{ matrix.os }}
     steps:
+      - uses: actions/checkout@v2
       - run: bash install/ubuntu.sh
         name: Check sets up the environment
