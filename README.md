@@ -1,12 +1,16 @@
-# auto
+# auto [![tests](https://github.com/kqf/auto/actions/workflows/ci.yml/badge.svg)](https://github.com/kqf/auto/actions/workflows/ci.yml)
 This is a set of scripts to speed up routine and repetitive tasks
 
 ## Examples
-To install all dependencies on a fresh `ubuntu` instance do:
-```bash
-# To run the script just do
-bash <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh
+To install all dependencies on a fresh `ubuntu` instance use the cli.
+First check if everything looks as expected:
 
-# Or a dry run to see what's inside
+```bash
 cat <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh
+```
+
+then run the script
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh
 ```
