@@ -1,4 +1,4 @@
-# auto
+# auto [![tests](https://github.com/kqf/auto/actions/workflows/ci.yml/badge.svg)](https://github.com/kqf/auto/actions/workflows/ci.yml)
 This is a set of scripts to speed up routine and repetitive tasks
 
 ## Examples
