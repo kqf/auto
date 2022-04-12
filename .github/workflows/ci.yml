@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  build:
+  build-ubuntu:
     strategy:
       matrix:
         os:
@@ -18,4 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: bash install/ubuntu.sh
+        name: Check sets up the environment
+
+  build-osx:
+    strategy:
+      matrix:
+        os:
+          - macos-11
+          - macos-10.05
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: bash install/osx.sh
         name: Check sets up the environment
