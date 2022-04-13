@@ -2,7 +2,7 @@ function enable-proxy {
     local withports=$(ps ax | grep cntlm | grep localhost)
 
     # Start the cntlm if no one has started yet
-    [ -z "$withports" ] && rm -f ~/.cntlm-HI-Z0DEG.pid && cntlm-start
+    [ -z "$withports" ] && rm -f ~/.cntlm-*.pid && cntlm-start
 
 
     local port=$(
