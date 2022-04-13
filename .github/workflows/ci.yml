@@ -27,7 +27,8 @@ jobs:
         os:
           - macos-latest
           - macos-11
-          - macos-10.05
+          # Don't run this systems as there are practically no workers
+          # - macos-10.05
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
