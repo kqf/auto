@@ -12,11 +12,11 @@ cat <(curl -s https://raw.githubusercontent.com/kqf/auto/master/aws/ec2.sh) > ~/
 Now one can manipulate the instances using just it's name.
 Start instances:
 ```bash
-ec2-instance NAME start
+aws-instance NAME start
 ```
 Stop instances:
 ```bash
-ec2-instance NAME stop
+aws-instance NAME stop
 ```
 Check state
 ```
