@@ -12,11 +12,11 @@ cat <(curl -s https://raw.githubusercontent.com/kqf/auto/master/aws/ec2.sh) > ~/
 Now one can manipulate the instances using just it's name.
 Start instances:
 ```bash
-aws-instance-id NAME | xargs aws ec2 start-instances --instance-ids
+ec2-instance NAME start
 ```
 Stop instances:
 ```bash
-aws-instance-id NAME | xargs aws ec2 stop-instances --instance-ids
+ec2-instance NAME stop
 ```
 Check state
 ```
@@ -26,4 +26,3 @@ Where `NAME` refers to the instance name or label.
 
 ## PS
 While solving the main issue this still looks ugly
-
