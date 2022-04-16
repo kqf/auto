@@ -10,8 +10,7 @@ function aws-instance() {
     aws-instance-id $1 | xargs aws ec2 $2-instances --instance-ids
 }
 
-function aws-instance-launch()
-{
+function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     aws ec2 run-instances \
         --image-id ami-04505e74c0741db8d \
