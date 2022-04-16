@@ -6,11 +6,11 @@ function aws-instance-id() {
     aws-instances-list | grep "$1" | awk '{print $1}'
 }
 
-function ec2-instance() {
+function aws-instance() {
     aws-instance-id $1 | xargs aws ec2 $2-instances --instance-ids
 }
 
-function ec2-launch-instance()
+function aws-instance-launch()
 {
     # This image corresponds to ubuntu 20.04
     aws ec2 run-instances \
