@@ -12,11 +12,14 @@ function aws-instance() {
 
 function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
+    local name=$1
+    local keyname=$2
+
     aws ec2 run-instances \
         --image-id ami-04505e74c0741db8d \
         --count 1 \
         --instance-type t2.xlarge \
-        --key-name existing-key-pair-name \
-        --tag-specifications 'ResourceType=instance,Tags=[{Key=Name,Value=meaningful-name}]' \
+        --key-name ${keyname} \
+        --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
         --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 128}} ]'
 }
