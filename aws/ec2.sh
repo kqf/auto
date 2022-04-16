@@ -22,4 +22,10 @@ function aws-instance-launch() {
         --key-name ${keyname} \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
         --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 128}} ]'
+
+    local alid=$(aws ec2 allocate-address \
+    --tag-specifications "ResourceType=elastic-ip,Tags=[{Key=Name,Value=${name}}]" | \
+    jq -r ".AllocationId")
+
+    aws ec2 associate-address --instance-id $(aws-instance-id ${name}) --allocation-id $alid
 }
