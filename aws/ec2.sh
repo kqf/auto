@@ -38,6 +38,7 @@ function aws-instance-launch() {
 
 function aws-instance-ssh-config() {
     local name=$1
+    local iid=$(aws-instance-id ${name})
     local ip=$(aws ec2 describe-addresses | \
         jq -r ".Addresses[] | select( .InstanceId == \"${iid}\" ) | .PublicIp")
 
