@@ -10,6 +10,12 @@ function aws-instance() {
     aws-instance-id $1 | xargs aws ec2 $2-instances --instance-ids
 }
 
+function aws-address-allocate {
+    local name=$1
+    aws ec2 allocate-address \
+    --tag-specifications "ResourceType=elastic-ip,Tags=[{Key=Name,Value=${name}}]"
+}
+
 function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
@@ -31,10 +37,13 @@ function aws-instance-launch() {
 }
 
 function aws-instance-ssh-config() {
-    local ip=none
+    local name=$1
+    local ip=$(aws ec2 describe-addresses | \
+        jq -r ".Addresses[] | select( .InstanceId == \"${iid}\" ) | .PublicIp")
+
 cat << EOF
 Host $1
-    HostName $ip
+    HostName ${ip}
     User ubuntu
     ForwardAgent yes
     IdentityFile ~/.ssh/existing-key.pem
