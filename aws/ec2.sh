@@ -10,6 +10,13 @@ function aws-instance() {
     aws-instance-id $1 | xargs aws ec2 $2-instances --instance-ids
 }
 
+
+function aws-address-allocate() {
+    local name=$1
+    aws ec2 allocate-address \
+    --tag-specifications "ResourceType=elastic-ip,Tags=[{Key=Name,Value=${name}}]"
+}
+
 function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
