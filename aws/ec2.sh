@@ -10,6 +10,13 @@ function aws-instance() {
     aws-instance-id $1 | xargs aws ec2 $2-instances --instance-ids
 }
 
+
+function aws-address-allocate() {
+    local name=$1
+    aws ec2 allocate-address \
+    --tag-specifications "ResourceType=elastic-ip,Tags=[{Key=Name,Value=${name}}]"
+}
+
 function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
@@ -23,10 +30,10 @@ function aws-instance-launch() {
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
         --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 128}} ]'
 
-    local alid=$(aws ec2 allocate-address \
-    --tag-specifications "ResourceType=elastic-ip,Tags=[{Key=Name,Value=${name}}]" | \
-    jq -r ".AllocationId")
+    # Allocate the address
+    local alid=$(aws-address-allocate ${name} | jq -r ".AllocationId")
 
+    # Associate it with the instance
     aws ec2 associate-address --instance-id $(aws-instance-id ${name}) --allocation-id $alid
 }
 
