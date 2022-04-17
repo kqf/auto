@@ -29,3 +29,14 @@ function aws-instance-launch() {
 
     aws ec2 associate-address --instance-id $(aws-instance-id ${name}) --allocation-id $alid
 }
+
+function aws-instance-ssh-config() {
+    local ip=none
+cat << EOF
+Host $1
+    HostName $ip
+    User ubuntu
+    ForwardAgent yes
+    IdentityFile ~/.ssh/existing-key.pem
+EOF
+}
