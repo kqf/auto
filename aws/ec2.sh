@@ -22,6 +22,14 @@ function aws-instance-launch() {
     local name=$1
     local keyname=$2
 
+    # Image ids
+    # ubuntu
+    #     --image-id ami-04505e74c0741db8d \
+    #     --instance-type t2.xlarge \
+    # ubuntu deep learning
+    #     --image-id ami-0403bb4876c18c180 \
+    #     --instance-type t2.xlarge \
+
     aws ec2 run-instances \
         --image-id ami-04505e74c0741db8d \
         --count 1 \
