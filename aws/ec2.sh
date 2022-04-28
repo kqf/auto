@@ -28,12 +28,12 @@ function aws-instance-launch() {
     #     --instance-type t2.xlarge \
     # ubuntu deep learning
     #     --image-id ami-0403bb4876c18c180 \
-    #     --instance-type t2.xlarge \
+    #     --instance-type g4dn.xlarge \
 
     aws ec2 run-instances \
-        --image-id ami-04505e74c0741db8d \
+        --image-id ami-0403bb4876c18c180 \
         --count 1 \
-        --instance-type t2.xlarge \
+        --instance-type g4dn.xlarge \
         --key-name ${keyname} \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
         --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 128}} ]'
