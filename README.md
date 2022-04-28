@@ -6,11 +6,11 @@ To install all dependencies on a fresh `ubuntu` instance use the cli.
 First check if everything looks as expected:
 
 ```bash
-cat <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh
+cat <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh)
 ```
 
 then run the script
 
 ```bash
-bash <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh
+bash <(curl -s https://raw.githubusercontent.com/kqf/auto/master/install/ubuntu.sh)
 ```
