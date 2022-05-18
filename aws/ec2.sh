@@ -53,7 +53,11 @@ function aws-instance-launch() {
     #     --instance-type t2.xlarge \
 
     # Check the security group id
-    local sgid=$(aws ec2 describe-security-groups --group-names $(sgroup) | jq -r ".SecurityGroups[0].GroupId")
+    local sgid=$(
+        aws ec2 describe-security-groups \
+            --group-names $(sgroup) \
+        | jq -r ".SecurityGroups[0].GroupId"
+    )
 
     aws ec2 run-instances \
         --image-id ami-0403bb4876c18c180 \
