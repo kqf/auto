@@ -17,6 +17,24 @@ function aws-address-allocate() {
     --tag-specifications "ResourceType=elastic-ip,Tags=[{Key=Name,Value=${name}}]"
 }
 
+function aws-sgroup {
+    local gname=${1:-ssh-only}
+    local desc="ssh only access"
+
+    local sgid=$(
+        aws ec2 create-security-group \
+            --description ${desc} \
+            --group-name ${gname} \
+        | jq -r ".GroupId"
+    )
+    aws ec2 authorize-security-group-ingress \
+        --group-id ${sgid} \
+        --protocol tcp \
+        --port 22 \
+        --cidr 0.0.0.0/0
+    echo ${sgid}
+}
+
 function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
