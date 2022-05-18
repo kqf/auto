@@ -55,7 +55,7 @@ function aws-instance-launch() {
     # Check the security group id
     local sgid=$(
         aws ec2 describe-security-groups \
-            --group-names $(sgroup) \
+            --group-names ${sgroup} \
         | jq -r ".SecurityGroups[0].GroupId" \
         || aws-sgroup ${sgroup}
     )
