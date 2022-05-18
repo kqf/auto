@@ -56,7 +56,8 @@ function aws-instance-launch() {
     local sgid=$(
         aws ec2 describe-security-groups \
             --group-names $(sgroup) \
-        | jq -r ".SecurityGroups[0].GroupId"
+        | jq -r ".SecurityGroups[0].GroupId" \
+        || aws-sgroup ${sgroup}
     )
 
     aws ec2 run-instances \
