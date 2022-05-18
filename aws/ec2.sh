@@ -10,7 +10,6 @@ function aws-instance() {
     aws-instance-id $1 | xargs aws ec2 $2-instances --instance-ids
 }
 
-
 function aws-address-allocate() {
     local name=$1
     aws ec2 allocate-address \
@@ -54,6 +53,7 @@ function aws-instance-launch() {
 
     # Check the security group id
     local sgid=$(
+        set -o pipefail; \
         aws ec2 describe-security-groups \
             --group-names ${sgroup} \
         | jq -r ".SecurityGroups[0].GroupId" \
