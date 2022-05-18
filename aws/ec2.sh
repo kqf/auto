@@ -25,18 +25,19 @@ function aws-instance-launch() {
     # Image ids
     # ubuntu
     #     --image-id ami-04505e74c0741db8d \
-    #     --instance-type t2.xlarge \
     # ubuntu deep learning
     #     --image-id ami-0403bb4876c18c180 \
+    # Instance types:
     #     --instance-type g4dn.xlarge \
+    #     --instance-type t2.xlarge \
 
     aws ec2 run-instances \
         --image-id ami-0403bb4876c18c180 \
         --count 1 \
-        --instance-type g4dn.xlarge \
+        --instance-type t2.xlarge \
         --key-name ${keyname} \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
-        --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 128}} ]'
+        --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 256}} ]'
 
     # Allocate the address
     local alid=$(aws-address-allocate ${name} | jq -r ".AllocationId")
