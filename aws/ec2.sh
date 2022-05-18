@@ -23,15 +23,17 @@ function aws-sgroup {
 
     local sgid=$(
         aws ec2 create-security-group \
-            --description ${desc} \
+            --description "${desc}" \
             --group-name ${gname} \
         | jq -r ".GroupId"
     )
+
     aws ec2 authorize-security-group-ingress \
         --group-id ${sgid} \
         --protocol tcp \
         --port 22 \
-        --cidr 0.0.0.0/0
+        --cidr 0.0.0.0/0 > /dev/null
+
     echo ${sgid}
 }
 
@@ -39,7 +41,7 @@ function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
     local keyname=$2
-    local sgroup=$3
+    local sgroup=${1:-ssh-only}
 
     # Image ids
     # ubuntu
