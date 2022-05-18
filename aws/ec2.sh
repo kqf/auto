@@ -41,7 +41,7 @@ function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
     local keyname=$2
-    local sgroup=${1:-ssh-only}
+    local sgroup=${3:-ssh-only}
 
     # Image ids
     # ubuntu
