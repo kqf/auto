@@ -21,6 +21,7 @@ function aws-instance-launch() {
     # This image corresponds to ubuntu 20.04
     local name=$1
     local keyname=$2
+    local sgroup=$3
 
     # Image ids
     # ubuntu
@@ -30,6 +31,9 @@ function aws-instance-launch() {
     # Instance types:
     #     --instance-type g4dn.xlarge \
     #     --instance-type t2.xlarge \
+
+    # Check the security group id
+    local sgid=$(aws ec2 describe-security-groups --group-names $(sgroup) | jq -r ".SecurityGroups[0].GroupId")
 
     aws ec2 run-instances \
         --image-id ami-0403bb4876c18c180 \
