@@ -40,6 +40,7 @@ function aws-instance-launch() {
         --count 1 \
         --instance-type t2.xlarge \
         --key-name ${keyname} \
+        --security-group-ids ${sgid} \
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
         --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 256}} ]'
 
