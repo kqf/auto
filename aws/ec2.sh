@@ -39,11 +39,14 @@ function aws-instance-launch() {
         --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${name}}]" \
         --block-device-mapping '[ {"DeviceName": "/dev/sda1", "Ebs": {"VolumeSize": 256}} ]'
 
+    # Wait until initialized
+    sleep 10
+
     # Allocate the address
     local alid=$(aws-address-allocate ${name} | jq -r ".AllocationId")
 
     # Associate it with the instance
-    aws ec2 associate-address --instance-id $(aws-instance-id ${name}) --allocation-id $alid
+    (set -x; aws ec2 associate-address --instance-id $(aws-instance-id ${name}) --allocation-id $alid)
 }
 
 function aws-instance-ssh-config() {
