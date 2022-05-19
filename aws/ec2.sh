@@ -43,6 +43,7 @@ function aws-instance-launch() {
     local keyname=$2
     local sgroup=${1:-ssh-only}
 
+
     # Image ids
     # ubuntu
     #     --image-id ami-04505e74c0741db8d \
