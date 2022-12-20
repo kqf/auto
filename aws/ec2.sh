@@ -1,5 +1,5 @@
 function aws-instances-list() {
-    aws ec2 describe-instances --region us-east-1 | jq -r '.Reservations[].Instances[]|.InstanceId+" "+.InstanceType+" "+(.Tags[] | select(.Key == "Name").Value)'
+    aws ec2 describe-instances --region us-east-1 | jq -r '.Reservations[].Instances[]|.InstanceId+" "+.State.Name+" "+.InstanceType+" "+(.Tags[] | select(.Key == "Name").Value)'
 }
 
 function aws-instance-id() {
