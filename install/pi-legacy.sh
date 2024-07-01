@@ -9,4 +9,5 @@ set -x
 sudo apt install -y fswebcam tig
 sudo usermod -aG video $USER
 
-# sudo raspi-config
+# Enable the legacy camera support
+sudo raspi-config nonint do_legacy 0
