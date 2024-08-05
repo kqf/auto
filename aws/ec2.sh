@@ -1,5 +1,5 @@
 function aws-instances-list() {
-    aws ec2 describe-instances --region us-east-1 | jq -r '.Reservations[].Instances[]|.InstanceId+" "+.State.Name+" "+.InstanceType+" "+(.Tags[] | select(.Key == "Name").Value)'
+    aws ec2 describe-instances --region us-east-1 | jq -r '.Reservations[].Instances[]|.InstanceId+" "+.State.Name+" "+.InstanceType+" "+.PublicIpAddress+" "+(.Tags[] | select(.Key == "Name").Value)'
 }
 
 function aws-instance-id() {
@@ -61,7 +61,7 @@ function aws-instance-launch() {
     )
 
     aws ec2 run-instances \
-        --image-id ami-0403bb4876c18c180 \
+        --image-id ami-04505e74c0741db8d \
         --count 1 \
         --instance-type t2.xlarge \
         --key-name ${keyname} \
