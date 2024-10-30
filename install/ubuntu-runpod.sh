@@ -27,14 +27,10 @@ export PYENV_ROOT="/workspace/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
 # pyenv
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init --path)"
-fi
+eval "$(pyenv init --path)"
 
 # pyenv-virtualenv
-if which pyenv-virtualenv-init > /dev/null; then
-  eval "$(pyenv virtualenv-init -)";
-fi
+eval "$(pyenv virtualenv-init -)";
 
 # git-bash-prompt
 if [ -f "/workspace/.bash-git-prompt/gitprompt.sh" ]; then
@@ -49,7 +45,7 @@ fi
 EOL
 
 # And now customize the prompt colors
-cat > /workspace/.git-prompt-colors.sh  << 'EOL'
+cat > ~/.git-prompt-colors.sh  << 'EOL'
 override_git_prompt_colors() {
 	GIT_PROMPT_THEME_NAME="Custom" # needed for reload optimization, should be unique
 	GIT_PROMPT_END_USER="${White}${ResetColor} $ "
