@@ -49,3 +49,7 @@ function transfer() {
 EOL
 
 echo -n "\nRestart your shell"
+
+
+# Disable accents, holding keys for continuous input
+defaults write -g ApplePressAndHoldEnabled -bool false
